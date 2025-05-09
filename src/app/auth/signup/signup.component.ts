@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 
 type Role = 'student' | 'teacher' | 'employee' | 'founder' | 'other'
@@ -44,6 +44,11 @@ export class SignupComponent {
     role: new FormControl<Role>('student', {
       validators: [Validators.required],
     }),
+    source: new FormArray([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+    ]),
     agree: new FormControl<boolean>(false)
   })
 
