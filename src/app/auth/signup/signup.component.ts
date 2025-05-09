@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { of } from 'rxjs';
 
+type Role = 'student' | 'teacher' | 'employee' | 'founder' | 'other'
+
 function emailIsUnique(control: AbstractControl) {
   if (control.value !== 'test@example.com') {
     return of(null);
@@ -26,6 +28,19 @@ export class SignupComponent {
     password: new FormControl('', {
       validators: [Validators.required, Validators.minLength(6)],
     }),
+    confirmPassword: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
+    firstName: new FormControl('', { validators: [Validators.required] }),
+    lastName: new FormControl('', { validators: [Validators.required] }),
+    street: new FormControl('', { validators: [Validators.required] }),
+    number: new FormControl('', { validators: [Validators.required] }),
+    postalCode: new FormControl('', { validators: [Validators.required] }),
+    city: new FormControl('', { validators: [Validators.required] }),
+    role: new FormControl<Role>('student', {
+      validators: [Validators.required],
+    }),
+    agree: new FormControl<boolean>(false)
   })
 
   onSubmit() {
